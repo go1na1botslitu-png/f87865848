@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новогодний привет для Папы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="snow-container"></div>
+    
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content">
+            <div class="quiz-header">
+                <h2>✨ Новогодний квиз для Папы 💫</h2>
+                <p>Узнай, какой ты настоящий новогодний герой!</p>
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span id="progress-text">Вопрос 1 из 3</span>
+                </div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-step active" id="step-1">
+                    <h3>Какой твой главный талант в Новый год?</h3>
+                    <div class="options-grid">
+                        <button class="quiz-option" data-value="handyman">🔧 Мастер на все руки</button>
+                        <button class="quiz-option" data-value="cook">👨‍🍳 Шеф-повар праздника</button>
+                        <button class="quiz-option" data-value="storyteller">📖 Лучший рассказчик</button>
+                        <button class="quiz-option" data-value="organizer">🎯 Организатор вечеринки</button>
+                    </div>
+                </div>
+                
+                <div class="quiz-step" id="step-2">
+                    <h3>Что ты любишь делать на праздниках?</h3>
+                    <div class="options-grid">
+                        <button class="quiz-option" data-value="toast">🥂 Произносить тосты</button>
+                        <button class="quiz-option" data-value="games">🎮 Играть в игры</button>
+                        <button class="quiz-option" data-value="dance">💃 Танцевать</button>
+                        <button class="quiz-option" data-value="relax">😌 Отдыхать с семьей</button>
+                    </div>
+                </div>
+                
+                <div class="quiz-step" id="step-3">
+                    <h3>Твой любимый новогодний момент?</h3>
+                    <div class="options-grid">
+                        <button class="quiz-option" data-value="tree">🎄 Зажигание елки</button>
+                        <button class="quiz-option" data-value="midnight">🕛 Бой курантов</button>
+                        <button class="quiz-option" data-value="gifts">🎁 Вручение подарков</button>
+                        <button class="quiz-option" data-value="table">🍽️ Праздничный ужин</button>
+                    </div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button id="prev-btn" class="nav-btn">
+                        <img src="left-arrow_2.png" alt="Назад" width="24" height="24">
+                    </button>
+                    <button id="next-btn" class="nav-btn">
+                        <img src="right-arrow_2.png" alt="Вперед" width="24" height="24">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container hidden" id="main-content">
+        <div class="greeting-box">
+            <h1>С Новым 2026 Годом!</h1>
+            <div class="message">Дорогой и любимый папа</div>
+            <div class="name">Стрельников Игорь</div>
+            <div class="message">От всего сердца поздравляем тебя с наступающим Новым 2026 годом!</div>
+            
+            <div class="decoration">
+                <div class="ornament">💖</div>
+                <div class="ornament">✨</div>
+                <div class="ornament">🌟</div>
+                <div class="ornament">🎀</div>
+                <div class="ornament">🌸</div>
+            </div>
+            
+            <div class="year">2026</div>
+            
+            <div class="wishes">
+                <p>Папа, ты - наша опора и поддержка! Спасибо тебе за всё, что ты делаешь для нашей семьи.</p>
+                <p>Твоя мудрость, сила и забота делают нашу жизнь по-настоящему счастливой и защищенной.</p>
+                <p>Мы ценим каждую минуту, проведенную с тобой, каждый совет, каждую помощь в трудную минуту.</p>
+                <p>Ты научил нас быть сильными, целеустремленными и никогда не сдаваться перед трудностями.</p>
+                <p>Мы бесконечно благодарны тебе за твою любовь, терпение и безграничную заботу!</p>
+                <p>Любим тебя больше всего на свете и гордимся тем, что ты наш папа!</p>
+            </div>
+        </div>
+
+        <section id="quiz-result" class="quiz-result hidden">
+            <div class="result-header">
+                <h2>Твой новогодний образ</h2>
+                <div class="result-icon" id="result-icon">✨</div>
+            </div>
+            <div class="result-content">
+                <h3 id="result-title">Вы — ...</h3>
+                <div class="result-description">
+                    <p><strong>Ваша сверхспособность:</strong> ...</p>
+                    <p><strong>Ваша миссия:</strong> ...</p>
+                    <p><strong>Секретное умение:</strong> ...</p>
+                </div>
+                <div class="result-stats">
+                    <div class="stat">
+                        <span class="stat-label">Уровень мастерства:</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="cringe-level"></div>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Уровень духа:</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="spirit-level"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gallery-container">
+    <div class="gallery-wrapper">
+        <button class="gallery-nav prev" aria-label="Предыдущий слайд">
+            <img src="left-arrow.png" alt="Предыдущий" width="24" height="24">
+        </button>
+        
+        <div class="gallery-slides">
+            <!-- Слайд 1 -->
+            <div class="gallery-slide active">
+                <div class="slide-image" style="background-image: url('1.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Наш главный защитник</h3>
+                    <p class="slide-description">Папа всегда готов прийти на помощь и защитить свою семью от любых невзгод.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 2 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Источник мудрости</h3>
+                    <p class="slide-description">Твои советы и жизненный опыт - бесценное сокровище для нашей семьи.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('2.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 3 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('3.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Мастер на все руки</h3>
+                    <p class="slide-description">Нет ничего, что ты не смог бы починить или сделать своими золотыми руками.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 4 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Семейный психолог</h3>
+                    <p class="slide-description">Ты всегда находишь нужные слова поддержки в трудную минуту.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('4.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 5 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('5.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Лучший друг</h3>
+                    <p class="slide-description">С тобой можно делиться самыми сокровенными мыслями и мечтами.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 6 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Семейный фотограф</h3>
+                    <p class="slide-description">Ты ловишь самые важные моменты нашей жизни через объектив камеры.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('6.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 7 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('7.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Главный по грилю</h3>
+                    <p class="slide-description">Твои шашлыки - это настоящее произведение кулинарного искусства.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 8 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Источник вдохновения</h3>
+                    <p class="slide-description">Твоя целеустремленность и трудолюбие вдохновляют нас каждый день.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('8.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 9 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('9.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Хранитель традиций</h3>
+                    <p class="slide-description">Ты бережно хранишь и передаешь семейные традиции из поколения в поколение.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 10 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Главный по настройкам</h3>
+                    <p class="slide-description">Любая техника оживает в твоих руках и работает как новая.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('10.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 11 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('11.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Семейный штурман</h3>
+                    <p class="slide-description">С тобой не страшно отправляться в любое, даже самое дальнее путешествие.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 12 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Лучший дед мороз</h3>
+                    <p class="slide-description">Ты создаешь самую волшебную новогоднюю атмосферу в нашем доме.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('12.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 13 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('13.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Семейный историк</h3>
+                    <p class="slide-description">Ты помнишь все важные даты и события нашей семейной истории.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 14 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Главный по безопасности</h3>
+                    <p class="slide-description">С тобой мы всегда чувствуем себя в полной безопасности.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('14.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 15 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('15.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Лучший воспитатель</h3>
+                    <p class="slide-description">Ты учишь нас важным жизненным урокам своим примером.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 16 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Семейный диджей</h3>
+                    <p class="slide-description">Ты всегда подбираешь идеальную музыку для любого настроения.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('16.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 17 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('17.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Главный по сюрпризам</h3>
+                    <p class="slide-description">Твои неожиданные подарки и сюрпризы всегда попадают в самое сердце.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 18 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Строитель семейного счастья</h3>
+                    <p class="slide-description">Ты - фундамент, на котором строится наше семейное благополучие.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('18.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 19 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('19.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Самый лучший папа</h3>
+                    <p class="slide-description">Просто потому что ты есть в нашей жизни, она становится ярче и счастливее.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 20 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Особый момент</h3>
+                    <p class="slide-description">Вот скриншот из-за которого ты не хочешь меня видеть... Надеюсь, ты простишь меня!</p>
+                </div>
+                <div class="slide-image" style="background-image: url('20.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="gallery-nav next" aria-label="Следующий слайд">
+            <img src="right-arrow.png" alt="Следующий" width="24" height="24">
+        </button>
+    </div>
+</div>
+
+        <div class="meme-generator-container">
+            <div class="meme-header">
+                <h2>💖 Новогодний мемогенератор</h2>
+                <p>Создай свой новогодний мем за 30 секунд!</p>
+            </div>
+            
+            <div class="image-selector">
+                <div class="image-grid">
+                    <div class="image-option" data-image="putin.webp" data-color="#FFB6C1">
+                        <div class="color-box" style="background-color: #FFB6C1;"></div>
+                        <span>Новогоднее</span>
+                    </div>
+                    <div class="image-option" data-image="ded_moroz.webp" data-color="#DDA0DD">
+                        <div class="color-box" style="background-color: #DDA0DD;"></div>
+                        <span>Дед Мороз</span>
+                    </div>
+                    <div class="image-option" data-image="elka.webp" data-color="#98FB98">
+                        <div class="color-box" style="background-color: #98FB98;"></div>
+                        <span>Ёлка</span>
+                    </div>
+                    <div class="image-option" data-image="snegovik.webp" data-color="#87CEEB">
+                        <div class="color-box" style="background-color: #87CEEB;"></div>
+                        <span>Снеговик</span>
+                    </div>
+                    <div class="image-option" data-image="shampanskoe.webp" data-color="#FFFF00">
+                        <div class="color-box" style="background-color: #FFFF00;"></div>
+                        <span>Шампанское</span>
+                    </div>
+                    <div class="image-option" data-image="kot.webp" data-color="#FFA500">
+                        <div class="color-box" style="background-color: #FFA500;"></div>
+                        <span>Кот</span>
+                    </div>
+                    <div class="image-option" data-image="fireworks.webp" data-color="#FF69B4">
+                        <div class="color-box" style="background-color: #FF69B4;"></div>
+                        <span>Фейерверк</span>
+                    </div>
+                    <div class="image-option custom-image" data-color="#0000FF">
+                        <div class="color-box" style="background-color: #0000FF;"></div>
+                        <span>Своя картинка</span>
+                        <input type="file" id="custom-image-upload" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-controls">
+                <div class="text-input-group">
+                    <input type="text" id="top-text" placeholder="Текст сверху" maxlength="32">
+                    <div class="char-count">0/32</div>
+                </div>
+                
+                <div class="text-input-group">
+                    <input type="text" id="bottom-text" placeholder="Текст снизу" maxlength="32">
+                    <div class="char-count">0/32</div>
+                </div>
+                
+                <button id="random-text" class="random-btn">
+                    <span>🎲 Случайный текст</span>
+                </button>
+            </div>
+            
+            <div class="meme-preview-container">
+                <div class="meme-preview" id="meme-preview">
+                    <div class="text-overlay top-text" id="preview-top-text"></div>
+                    <div class="meme-image" id="meme-image"></div>
+                    <div class="text-overlay bottom-text" id="preview-bottom-text"></div>
+                </div>
+            </div>
+            
+            <div class="meme-controls">
+                <button id="new-meme" class="meme-btn new-btn">
+                    <span>🔄 Новый мем</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Блок "Обращение автора" -->
+        <div class="author-message">
+            <div class="author-header">
+                <h2>🎤 Обращение автора</h2>
+                <p>Послушайте новогоднее обращение автора этого сайта!</p>
+            </div>
+            <div class="audio-container">
+                <audio controls>
+                    <source src="1.ogg" type="audio/ogg">
+                    Ваш браузер не поддерживает аудио элемент.
+                </audio>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

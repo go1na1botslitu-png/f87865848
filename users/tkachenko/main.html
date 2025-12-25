@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="icon.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новогодний привет</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="snow-container"></div>
+    
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content">
+            <div class="quiz-header">
+                <h2>🍷 Новогодняя дичь-2026 🎄</h2>
+                <p>Узнай, какой ты продавец в "Магнит Косметик" после 10 рюмок!</p>
+                <div class="quiz-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span id="progress-text">Вопрос 1 из 3</span>
+                </div>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-step active" id="step-1">
+                    <h3>Что будешь делать на корпоративе?</h3>
+                    <div class="options-grid">
+                        <button class="quiz-option" data-value="drunk">🍾 Нажраться дешёвым шампанским из склада</button>
+                        <button class="quiz-option" data-value="flirt">💋 Залезть под ёлку с директором отдела</button>
+                        <button class="quiz-option" data-value="steal">🛒 Украсть всю туалетную воду со скидкой</button>
+                        <button class="quiz-option" data-value="fight">👊 Устроить драку за последний подарочный набор</button>
+                    </div>
+                </div>
+                
+                <div class="quiz-step" id="step-2">
+                    <h3>Как будешь работать 1 января?</h3>
+                    <div class="options-grid">
+                        <button class="quiz-option" data-value="hungover">🤢 Продавать с похмелья, путая цены</button>
+                        <button class="quiz-option" data-value="angry">😡 Кричать на покупателей за возвраты</button>
+                        <button class="quiz-option" data-value="sleepy">😴 Спать в подсобке с бутылкой шампанского</button>
+                        <button class="quiz-option" data-value="crazy">🤪 Раздавать товары бесплатно "по-новогоднему"</button>
+                    </div>
+                </div>
+                
+                <div class="quiz-step" id="step-3">
+                    <h3>Твой новогодний план в "Магните"?</h3>
+                    <div class="options-grid">
+                        <button class="quiz-option" data-value="discount">🔥 Скидки 90% на всё под шум фейерверков</button>
+                        <button class="quiz-option" data-value="party">🎉 Устроить оргию в подсобке с коллегами</button>
+                        <button class="quiz-option" data-value="gift">🎁 Раздать все подарки себе под видом "акции"</button>
+                        <button class="quiz-option" data-value="close">🚪 Закрыть магазин и уйти в запой</button>
+                    </div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button id="prev-btn" class="nav-btn">
+                        <img src="left-arrow_2.png" alt="Назад" width="24" height="24">
+                    </button>
+                    <button id="next-btn" class="nav-btn">
+                        <img src="right-arrow_2.png" alt="Вперед" width="24" height="24">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container hidden" id="main-content">
+        <div class="greeting-box">
+            <h1>С Новым 2026 Годом!</h1>
+            <div class="message">Дорогая и любимая</div>
+            <div class="name">София Ткаченко</div>
+            <div class="message">От всей нашей дружной команды, от друзей и близких сердечно поздравляем тебя с наступающим Новым 2026 годом!</div>
+            
+            <div class="decoration">
+                <div class="ornament">🎁</div>
+                <div class="ornament">🎄</div>
+                <div class="ornament">⭐</div>
+                <div class="ornament">💃</div>
+                <div class="ornament">❄️</div>
+            </div>
+            
+            <div class="year">2026</div>
+            
+            <div class="wishes">
+                <p>Пусть новый 2026 год станет для тебя годом великих свершений, ярких открытий и безграничных возможностей!</p>
+                <p>Желаем тебе крепкого сибирского здоровья, неиссякаемой энергии и бодрости духа. Пусть каждый день приносит радость, улыбки близких и ощущение полного счастья.</p>
+                <p>Спасибо тебе за то, что ты - лучшая партнёрша по танцам, с которой можно и на паркете, и по жизни! А ещё за то, что стала мне настоящей сестрой - хоть и не по крови, но по духу и сердцу.</p>
+                <p>Пусть все твои профессиональные проекты реализуются с блеском, а личные цели достигаются легко и гармонично. Пусть финансовое благополучие станет твоим верным спутником, а в доме всегда царит атмосфера тепла, любви и взаимопонимания.</p>
+                <p>Пусть новый год подарит тебе море незабываемых моментов, встреч с дорогими людьми и исполнения самых заветных, даже самых смелых желаний!</p>
+                <p>С наилучшими пожеланиями в Новом 2026 году!</p>
+            </div>
+        </div>
+
+        <section id="quiz-result" class="quiz-result hidden">
+            <div class="result-header">
+                <h2>Твой новогодний титул</h2>
+                <div class="result-icon" id="result-icon">🎄</div>
+            </div>
+            <div class="result-content">
+                <h3 id="result-title">Вы — ...</h3>
+                <div class="result-description">
+                    <p><strong>Ваша сверхспособность:</strong> ...</p>
+                    <p><strong>Ваша миссия:</strong> ...</p>
+                    <p><strong>Секретное умение:</strong> ...</p>
+                </div>
+                <div class="result-stats">
+                    <div class="stat">
+                        <span class="stat-label">Уровень кринжа:</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="cringe-level"></div>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Уровень духа:</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" id="spirit-level"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gallery-container">
+    <div class="gallery-wrapper">
+        <button class="gallery-nav prev" aria-label="Предыдущий слайд">
+            <img src="left-arrow.png" alt="Предыдущий" width="24" height="24">
+        </button>
+        
+        <div class="gallery-slides">
+            <!-- Слайд 1 -->
+            <div class="gallery-slide active">
+                <div class="slide-image" style="background-image: url('1.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Волшебство Нового Года</h3>
+                    <p class="slide-description">Первый снег, сверкающие огни и атмосфера чуда наполняют сердца теплом и надеждой на прекрасное будущее.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 2 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Семейное тепло</h3>
+                    <p class="slide-description">Самые дорогие моменты — это те, что мы проводим с близкими. Пусть в вашем доме всегда царит уют и гармония.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('2.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 3 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('3.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Новогодние традиции</h3>
+                    <p class="slide-description">Украшение ёлки, приготовление особых блюд и загадывание желаний под бой курантов создают неповторимую атмосферу праздника.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 4 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Начало нового пути</h3>
+                    <p class="slide-description">Новый год — это чистый лист, на котором можно написать свою историю. Пусть каждый день приносит новые возможности!</p>
+                </div>
+                <div class="slide-image" style="background-image: url('4.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 5 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('5.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Праздничное настроение</h3>
+                    <p class="slide-description">Улыбки близких, смех детей и общая радость — вот что делает Новый год таким особенным.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 6 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Зимние красоты</h3>
+                    <p class="slide-description">Морозные узоры на окнах, искрящийся снег и хрустальный воздух — природа дарит нам сказку.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('6.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 7 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('7.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Вечер чудес</h3>
+                    <p class="slide-description">Когда гаснет свет и зажигаются гирлянды, наступает время для самых заветных желаний.</p>
+                </div>
+            </div>
+            
+            <!-- Слайд 8 -->
+            <div class="gallery-slide">
+                <div class="slide-text">
+                    <h3>Тепло домашнего очага</h3>
+                    <p class="slide-description">Нигде не бывает так уютно, как дома в кругу семьи под звуки новогодних песен.</p>
+                </div>
+                <div class="slide-image" style="background-image: url('8.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            
+            <!-- Слайд 9 -->
+            <div class="gallery-slide">
+                <div class="slide-image" style="background-image: url('9.jpg');">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-text">
+                    <h3>Праздничный стол</h3>
+                    <p class="slide-description">Ароматные блюда, любимые угощения и шампанское — все для незабываемого праздника.</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="gallery-nav next" aria-label="Следующий слайд">
+            <img src="right-arrow.png" alt="Следующий" width="24" height="24">
+        </button>
+    </div>
+</div>
+
+        <div class="meme-generator-container">
+            <div class="meme-header">
+                <h2>🎭 Новогодний мемогенератор</h2>
+                <p>Создай свой новогодний мем за 30 секунд!</p>
+            </div>
+            
+            <div class="image-selector">
+                <div class="image-grid">
+                    <div class="image-option" data-image="putin.webp" data-color="#808080">
+                        <div class="color-box" style="background-color: #808080;"></div>
+                        <span>Путин</span>
+                    </div>
+                    <div class="image-option" data-image="ded_moroz.webp" data-color="#FF0000">
+                        <div class="color-box" style="background-color: #FF0000;"></div>
+                        <span>Дед Мороз</span>
+                    </div>
+                    <div class="image-option" data-image="elka.webp" data-color="#00FF00">
+                        <div class="color-box" style="background-color: #00FF00;"></div>
+                        <span>Ёлка</span>
+                    </div>
+                    <div class="image-option" data-image="snegovik.webp" data-color="#00BFFF">
+                        <div class="color-box" style="background-color: #00BFFF;"></div>
+                        <span>Снеговик</span>
+                    </div>
+                    <div class="image-option" data-image="shampanskoe.webp" data-color="#FFFF00">
+                        <div class="color-box" style="background-color: #FFFF00;"></div>
+                        <span>Шампанское</span>
+                    </div>
+                    <div class="image-option" data-image="kot.webp" data-color="#FFA500">
+                        <div class="color-box" style="background-color: #FFA500;"></div>
+                        <span>Кот</span>
+                    </div>
+                    <div class="image-option" data-image="fireworks.webp" data-color="#FF69B4">
+                        <div class="color-box" style="background-color: #FF69B4;"></div>
+                        <span>Фейерверк</span>
+                    </div>
+                    <div class="image-option custom-image" data-color="#0000FF">
+                        <div class="color-box" style="background-color: #0000FF;"></div>
+                        <span>Своя картинка</span>
+                        <input type="file" id="custom-image-upload" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-controls">
+                <div class="text-input-group">
+                    <input type="text" id="top-text" placeholder="Текст сверху" maxlength="32">
+                    <div class="char-count">0/32</div>
+                </div>
+                
+                <div class="text-input-group">
+                    <input type="text" id="bottom-text" placeholder="Текст снизу" maxlength="32">
+                    <div class="char-count">0/32</div>
+                </div>
+                
+                <button id="random-text" class="random-btn">
+                    <span>🎲 Случайный текст</span>
+                </button>
+            </div>
+            
+            <div class="meme-preview-container">
+                <div class="meme-preview" id="meme-preview">
+                    <div class="text-overlay top-text" id="preview-top-text"></div>
+                    <div class="meme-image" id="meme-image"></div>
+                    <div class="text-overlay bottom-text" id="preview-bottom-text"></div>
+                </div>
+            </div>
+            
+            <div class="meme-controls">
+                <button id="new-meme" class="meme-btn new-btn">
+                    <span>🔄 Новый мем</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <div class="video-header">
+                <h2>🎬 Новогодние воспоминания</h2>
+                <p>Самые тёплые и весёлые моменты уходящего года!</p>
+            </div>
+            
+            <div class="video-gallery">
+                <div class="video-item">
+                    <video controls>
+                        <source src="1.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="2.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="3.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="4.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- НОВЫЙ БЛОК: Обращение автора -->
+        <div class="author-message-container">
+            <div class="author-message-header">
+                <h2>🎤 Обращение автора</h2>
+                <p>Несколько слов от создателя этого новогоднего поздравления</p>
+            </div>
+            
+            <div class="author-message-content">
+                <div class="audio-player">
+                    <audio controls>
+                        <source src="sistr.ogg" type="audio/ogg">
+                        Ваш браузер не поддерживает аудио элемент.
+                    </audio>
+                </div>
+                
+                <div class="author-text">
+                    <p>Дорогая София, это небольшое аудио-послание я записал специально для тебя. В нём я хочу сказать то, что не всегда получается выразить словами на бумаге.</p>
+                    <p>Пусть этот голос останется с тобой как напоминание о нашей дружбе и о том, как сильно я ценю тебя в своей жизни.</p>
+                    <p>С любовью и наилучшими пожеланиями в Новом 2026 году!</p>
+                </div>
+            </div>
+        </div>
+        <!-- КОНЕЦ НОВОГО БЛОКА -->
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
