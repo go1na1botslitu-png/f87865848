@@ -1,0 +1,760 @@
+@font-face{
+	font-family: 'MarckScript';
+	src:url('MarckScript.ttf');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background-color: #0a1a2d;
+	color: #fff;
+	min-height: 100vh;
+	overflow-x: hidden;
+	position: relative;
+}
+
+/* Математические формулы как фон */
+.math-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	overflow: hidden;
+	background-image: url('pic.webp');
+	background-size: cover;
+	background-position: center;
+	filter: blur(5px);
+}
+
+.background-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(10, 26, 45, 0.7);
+	z-index: -1;
+}
+
+/* Снегопад */
+.snow-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.snowflake {
+	position: absolute;
+	top: -10px;
+	background-color: white;
+	border-radius: 50%;
+	opacity: 0.8;
+	animation-name: fall;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+	0% {
+		transform: translateY(0) rotate(0deg);
+		opacity: 0.8;
+	}
+	100% {
+		transform: translateY(100vh) rotate(360deg);
+		opacity: 0;
+	}
+}
+
+/* Основной контейнер */
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 40px 20px;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 40px;
+	width: 100%;
+}
+
+.header h1 {
+	font-family: 'MarckScript', sans-serif;
+	font-size: 3.5rem;
+	font-weight: 600;
+	margin-bottom: 15px;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	background: linear-gradient(to bottom, #fff, #c1e0ff);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	letter-spacing: 1px;
+}
+
+.header p {
+	font-size: 1.2rem;
+	opacity: 0.9;
+	max-width: 600px;
+	margin: 0 auto;
+	line-height: 1.6;
+}
+
+/* Окошко входа */
+.login-window {
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(12px);
+	border-radius: 20px;
+	padding: 40px;
+	width: 100%;
+	max-width: 500px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	position: relative;
+	overflow: hidden;
+	margin: 20px auto;
+	justify-content: center;
+	align-self: center;
+}
+
+.login-window::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 5px;
+	background: linear-gradient(90deg, #4cc9f0, #4361ee, #3a0ca3);
+}
+
+.window-title {
+	font-size: 2.2rem;
+	text-align: center;
+	margin-bottom: 30px;
+	color: #fff;
+	font-weight: 600;
+}
+
+.form-group {
+	margin-bottom: 25px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 500;
+	color: #e6f2ff;
+	font-size: 1.1rem;
+}
+
+.form-control {
+	width: 100%;
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 10px;
+	color: white;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.form-control:focus {
+	outline: none;
+	border-color: #4cc9f0;
+	box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.2);
+	background-color: rgba(255, 255, 255, 0.12);
+}
+
+.form-control::placeholder {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.note {
+	background-color: rgba(76, 201, 240, 0.15);
+	border-left: 4px solid #4cc9f0;
+	padding: 15px;
+	margin: 30px 0;
+	border-radius: 0 8px 8px 0;
+	font-style: italic;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	text-align: center;
+}
+
+.submit-btn {
+	width: 100%;
+	padding: 16px;
+	background: linear-gradient(90deg, #4361ee, #3a0ca3);
+	color: white;
+	border: none;
+	border-radius: 10px;
+	font-size: 1.5rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin-top: 10px;
+	letter-spacing: 1px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.submit-btn:hover {
+	background: linear-gradient(90deg, #3a0ca3, #4361ee);
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.error-message {
+	background-color: rgba(255, 87, 87, 0.2);
+	border-left: 4px solid #ff5757;
+	padding: 15px;
+	margin: 20px 0;
+	border-radius: 0 8px 8px 0;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	display: none;
+}
+
+.predefined-users {
+	margin-top: 30px;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.predefined-users h3 {
+	text-align: center;
+	margin-bottom: 15px;
+	color: #c1e0ff;
+	font-size: 1.3rem;
+}
+
+.user-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 12px;
+}
+
+.user-item {
+	background-color: rgba(255, 255, 255, 0.05);
+	padding: 12px 8px;
+	border-radius: 8px;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 0.95rem;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.user-item:hover {
+	background-color: rgba(76, 201, 240, 0.2);
+	transform: translateY(-2px);
+	border-color: rgba(76, 201, 240, 0.3);
+}
+
+/* Страница пользователя */
+.user-profile {
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(12px);
+	border-radius: 20px;
+	padding: 40px;
+	width: 100%;
+	max-width: 800px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	position: relative;
+	overflow: hidden;
+	margin-top: 20px;
+	align-self: center;
+}
+
+/* Уникальное оформление для каждого пользователя */
+/* Иван Стрельников - синий/зеленый */
+.user-profile.strelnikov::before {
+	background: linear-gradient(90deg, #4361ee, #4cc9f0);
+}
+
+.user-profile.strelnikov .user-avatar {
+	background: linear-gradient(135deg, #4361ee, #4cc9f0);
+}
+
+/* Юрий Жолнач - синий/голубой */
+.user-profile.zholnach::before {
+	background: linear-gradient(90deg, #4361ee, #4cc9f0);
+}
+
+.user-profile.zholnach .user-avatar {
+	background: linear-gradient(135deg, #4361ee, #4cc9f0);
+}
+
+/* Юрий Жёлнач - оранжевый/золотой */
+.user-profile.zholnach2::before {
+	background: linear-gradient(90deg, #ff9500, #ffd700);
+}
+
+.user-profile.zholnach2 .user-avatar {
+	background: linear-gradient(135deg, #ff9500, #ffd700);
+}
+
+/* София Ткаченко - розовый/лиловый */
+.user-profile.tkachenko::before {
+	background: linear-gradient(90deg, #ff6bcb, #8a2be2);
+}
+
+.user-profile.tkachenko .user-avatar {
+	background: linear-gradient(135deg, #ff6bcb, #8a2be2);
+}
+
+/* Евгения Чуркина - зелёный/бирюзовый */
+.user-profile.churkina::before {
+	background: linear-gradient(90deg, #2e8b57, #40e0d0);
+}
+
+.user-profile.churkina .user-avatar {
+	background: linear-gradient(135deg, #2e8b57, #40e0d0);
+}
+
+/* Ирина Загдай - фиолетовый/розовый */
+.user-profile.zagdai::before {
+	background: linear-gradient(90deg, #7209b7, #f72585);
+}
+
+.user-profile.zagdai .user-avatar {
+	background: linear-gradient(135deg, #7209b7, #f72585);
+}
+
+/* Иван Моисеев - оранжевый/желтый */
+.user-profile.moiseev::before {
+	background: linear-gradient(90deg, #f3722c, #f9c74f);
+}
+
+.user-profile.moiseev .user-avatar {
+	background: linear-gradient(135deg, #f3722c, #f9c74f);
+}
+
+/* Александр Медведев - зеленый/бирюзовый */
+.user-profile.medvedev::before {
+	background: linear-gradient(90deg, #2d6a4f, #52b788);
+}
+
+.user-profile.medvedev .user-avatar {
+	background: linear-gradient(135deg, #2d6a4f, #52b788);
+}
+
+/* Александр Погребняк - красный/оранжевый */
+.user-profile.pogrebnyak::before {
+	background: linear-gradient(90deg, #d00000, #ff9e00);
+}
+
+.user-profile.pogrebnyak .user-avatar {
+	background: linear-gradient(135deg, #d00000, #ff9e00);
+}
+
+/* Владимир Савченко - синий/фиолетовый */
+.user-profile.savchenko::before {
+	background: linear-gradient(90deg, #3a0ca3, #7209b7);
+}
+
+.user-profile.savchenko .user-avatar {
+	background: linear-gradient(135deg, #3a0ca3, #7209b7);
+}
+/* Инна Коваленко - фиолетовый/сиреневый */
+.user-profile.kovalenko-inna::before {
+	background: linear-gradient(90deg, #7209b7, #b5179e);
+}
+
+.user-profile.kovalenko-inna .user-avatar {
+	background: linear-gradient(135deg, #7209b7, #b5179e);
+}
+
+/* Галина Коваленко - оранжевый/коралловый */
+.user-profile.kovalenko-galina::before {
+	background: linear-gradient(90deg, #ff6d00, #ff9e00);
+}
+
+.user-profile.kovalenko-galina .user-avatar {
+	background: linear-gradient(135deg, #ff6d00, #ff9e00);
+}
+
+/* Игорь Стрельников - синий/бирюзовый */
+.user-profile.strelnikov-igor::before {
+	background: linear-gradient(90deg, #0077b6, #00b4d8);
+}
+
+.user-profile.strelnikov-igor .user-avatar {
+	background: linear-gradient(135deg, #0077b6, #00b4d8);
+}
+
+/* Богдан Сесь - темный/золотой */
+.user-profile.ses::before {
+	background: linear-gradient(90deg, #001219, #ffd60a);
+}
+
+.user-profile.ses .user-avatar {
+	background: linear-gradient(135deg, #001219, #ffd60a);
+}
+
+.user-profile::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 5px;
+}
+
+.user-header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-right: 25px;
+}
+
+.user-info h2 {
+	font-size: 2.2rem;
+	margin-bottom: 5px;
+}
+
+.user-info p {
+	opacity: 0.8;
+	font-size: 1.1rem;
+}
+
+.user-stats {
+	display: flex;
+	justify-content: space-around;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 15px;
+	padding: 20px;
+	margin-bottom: 30px;
+}
+
+.stat-item {
+	text-align: center;
+}
+
+.stat-value {
+	font-size: 2.2rem;
+	font-weight: bold;
+	color: #4cc9f0;
+	display: block;
+}
+
+.stat-label {
+	font-size: 0.9rem;
+	opacity: 0.8;
+}
+
+.user-content {
+	display: none;
+}
+
+.content-block {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 15px;
+	padding: 25px;
+}
+
+.content-block h3 {
+    font-family: 'MarckScript', sans-serif;
+	font-size: 1.6rem;
+	margin-bottom: 15px;
+	color: #c1e0ff;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.content-block ul {
+	list-style-type: none;
+}
+
+.content-block li {
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.content-block li:last-child {
+	border-bottom: none;
+}
+
+.user-actions {
+	display: flex;
+	gap: 15px;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 40px;
+}
+
+.action-btn {
+	padding: 12px 24px;
+	border-radius: 10px;
+	border: none;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.action-btn.primary {
+	background: linear-gradient(90deg, #4361ee, #3a0ca3);
+	color: white;
+}
+
+.action-btn.secondary {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: white;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.action-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Новогоднее сообщение */
+.newyear-message {
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 15px;
+	padding: 35px;
+	margin-bottom: 30px;
+	text-align: center;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.newyear-message h3 {
+	font-family: 'MarckScript', sans-serif;
+	font-size: 2.2rem;
+	margin-bottom: 25px;
+	color: #ffd700;
+	text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.newyear-message p {
+	font-size: 1.2rem;
+	line-height: 1.7;
+	margin-bottom: 20px;
+	opacity: 0.9;
+}
+
+.newyear-message .highlight {
+	color: #4cc9f0;
+	font-weight: bold;
+	font-size: 1.3rem;
+	margin: 25px 0;
+}
+
+.newyear-message .magic {
+	color: #ff6b9d;
+	font-weight: bold;
+	animation: pulse 2s infinite;
+	margin-top: 20px;
+	font-size: 1.3rem;
+}
+
+.newyear-message ul {
+	list-style: none;
+	margin: 25px 0;
+	padding: 0;
+	text-align: left;
+}
+
+.newyear-message li {
+	padding: 12px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	font-size: 1.1rem;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.newyear-message li:last-child {
+	border-bottom: none;
+}
+
+@keyframes pulse {
+	0% { opacity: 0.7; }
+	50% { opacity: 1; }
+	100% { opacity: 0.7; }
+}
+
+/* Страница "нет аккаунта" */
+.no-account {
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(12px);
+	border-radius: 20px;
+	padding: 60px 40px;
+	width: 100%;
+	max-width: 600px;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	margin-top: 20px;
+	align-self: center;
+}
+
+.no-account::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 5px;
+	background: linear-gradient(90deg, #ff5757, #ff8a00);
+}
+
+.no-account i {
+	font-size: 4rem;
+	color: #ff5757;
+	margin-bottom: 20px;
+}
+
+.no-account h2 {
+	font-family: 'Playfair Display', serif;
+	font-size: 2.5rem;
+	margin-bottom: 15px;
+}
+
+.no-account p {
+	font-size: 1.1rem;
+	line-height: 1.6;
+	margin-bottom: 30px;
+	opacity: 0.9;
+}
+
+/* Футер */
+.footer {
+	text-align: center;
+	margin-top: 40px;
+	font-size: 0.9rem;
+	opacity: 0.7;
+	width: 100%;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+	.header h1 {
+		font-size: 2.5rem;
+	}
+	
+	.user-header {
+		flex-direction: column;
+		text-align: center;
+	}
+	
+	.user-avatar {
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
+	
+	.login-window, .user-profile, .no-account {
+		padding: 30px 25px;
+		margin: 20px auto;
+		width: calc(100% - 30px);
+		max-width: calc(100% - 30px);
+	}
+	
+	.window-title {
+		font-size: 1.8rem;
+	}
+	
+	.user-list {
+		grid-template-columns: 1fr;
+	}
+	
+	.user-actions {
+		flex-direction: column;
+	}
+	
+	.action-btn {
+		width: 100%;
+		justify-content: center;
+	}
+	
+	.newyear-message {
+		padding: 25px;
+	}
+	
+	.newyear-message h3 {
+		font-size: 1.8rem;
+	}
+	
+	.newyear-message p {
+		font-size: 1.1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.header h1 {
+		font-size: 2rem;
+	}
+	
+	.header p {
+		font-size: 1rem;
+	}
+	
+	.window-title {
+		font-size: 1.6rem;
+	}
+	
+	.container {
+		padding: 20px 15px;
+	}
+	
+	.user-stats {
+		flex-direction: column;
+		gap: 20px;
+	}
+	
+	.login-window, .user-profile, .no-account {
+		padding: 25px 20px;
+		margin: 15px auto;
+		width: calc(100% - 20px);
+		max-width: calc(100% - 20px);
+	}
+}
+
+/* Скрыть статистику пользователя */
+.user-stats {
+	display: none;
+}
